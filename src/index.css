@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-butter text-espresso font-sans antialiased; }
+  :focus-visible { outline: 3px solid #8E1825; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+}
+
+@layer components {
+  /* Rayas verticales decorativas (inspiración gráfica de café/editorial) */
+  .stripes       { background-image: repeating-linear-gradient(90deg, #8E1825 0 14px, #FFF8CA 14px 28px); }
+  .stripes-sky   { background-image: repeating-linear-gradient(90deg, #C8D9EC 0 14px, #FFF8CA 14px 28px); }
+  .stripes-dark  { background-image: repeating-linear-gradient(90deg, #6B0B0C 0 14px, #2D120D 14px 28px); }
+  .btn { @apply inline-flex items-center gap-2 px-6 py-3 font-bold border-2 border-espresso transition-transform duration-150 hover:-translate-y-0.5 hover:-translate-x-0.5; }
+  .btn-primary { @apply btn bg-cherry text-butter shadow-cut hover:shadow-[8px_8px_0_#2D120D]; }
+  .btn-ghost { @apply btn bg-butter text-espresso hover:bg-sky; }
+  .section { @apply mx-auto max-w-6xl px-5 py-20 md:py-28; }
+  .tape { @apply absolute -top-3 left-1/2 h-6 w-24 -translate-x-1/2 rotate-[-4deg] bg-sky/80; }
+}
+
+/* Única animación autónoma: la foto del hero se "pega" al cargar */
+@keyframes stick { from { transform: rotate(-9deg) translateY(-14px); opacity: 0; } to { transform: rotate(3deg); opacity: 1; } }
+.stick-in { animation: stick .7s cubic-bezier(.2,.9,.3,1.2) both; }
