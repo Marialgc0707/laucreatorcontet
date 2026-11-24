@@ -18,12 +18,9 @@ export const SITE = {
   // 🖼️ REEMPLAZA: coloca tus fotos en public/images/ con estos nombres (o cambia las rutas).
   // Si el archivo no existe, se muestra un marcador de posición.
   images: {
-    hero: '/images/hero.jpg',
+    hero: '/images/hero.png',
     about: '/images/about.jpg',
   },
-
-  // 🖼️ Marco de la foto principal: 'square' (marco cuadrado con leopardo) o 'cutout' (PNG recortado sin fondo, sin marco)
-  heroFrame: 'cutout',
 
   // Endpoint PHP del formulario (no cambiar salvo que muevas el archivo)
   contactEndpoint: '/api/contact.php',

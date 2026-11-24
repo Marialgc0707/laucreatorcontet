@@ -35,7 +35,7 @@ function Body({ v, tone }) {
   if (v === 'leopard') return <div className="absolute inset-0 bg-leopard" style={{ clipPath: clip(1) }} />;
   if (v === 'studded') {
     return (
-      <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full">
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
         <polygon points={pts(1)} fill="#2D120D" stroke="#8d8378" strokeWidth="1.6" strokeDasharray="1.4 .9" strokeLinejoin="round" />
         {STUDS.map(([x, y], i) => <g key={i}><circle cx={x} cy={y} r="2.2" fill="#b9b4ad" /><circle cx={x - 0.6} cy={y - 0.6} r=".8" fill="#fff" /></g>)}
       </svg>
@@ -46,7 +46,7 @@ function Body({ v, tone }) {
     <>
       <div className="absolute inset-0" style={{ clipPath: clip(1), background: t.ring }} />
       <div className="absolute inset-0" style={{ clipPath: clip(0.82), background: `radial-gradient(${t.g1} .7px, transparent 1px) 0 0/5px 5px, radial-gradient(${t.g2} .7px, transparent 1.1px) 2px 3px/8px 8px, ${t.fill}` }} />
-      <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full"><polygon points={pts(0.9)} fill="none" stroke={t.line} strokeWidth=".9" strokeDasharray="1.6 1" strokeLinejoin="round" /></svg>
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full"><polygon points={pts(0.9)} fill="none" stroke={t.line} strokeWidth=".9" strokeDasharray="1.6 1" strokeLinejoin="round" /></svg>
     </>
   );
 }
@@ -92,7 +92,7 @@ const FIELDS = {
 
 export function StarField({ preset }) {
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden>
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
       {(FIELDS[preset] || []).map(([v, t, x, y, s, rot, desk], i) => (
         <Star key={i} variant={v} tone={t} className={`absolute ${desk ? 'hidden md:block' : ''}`}
           style={{ left: `${x}%`, top: `${y}%`, width: `clamp(${Math.round(s * 0.55)}px, ${(s / 12).toFixed(1)}vw, ${s}px)`, transform: `rotate(${rot}deg)` }} />
