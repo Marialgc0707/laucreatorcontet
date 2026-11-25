@@ -3,7 +3,9 @@
  * Endpoint del formulario de contacto — PHP puro, sin dependencias.
  * Recibe POST JSON desde React: { name, email, service, message, website(honeypot) }
  */
-
+import { SITE } from "../data/siteConfig";
+import { Star, StarField } from "./Sticker";
+import { SERVICES } from "../data/services";
 // ============ ✏️ CONFIGURACIÓN: EDITA ESTOS VALORES ============
 const TO_EMAIL   = 'contacto@tudominio.com';   // 📧 Correo que RECIBE los mensajes
 const FROM_EMAIL = 'no-reply@tudominio.com';   // Debe ser una cuenta de TU dominio (evita spam en cPanel)
