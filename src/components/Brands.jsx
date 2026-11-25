@@ -21,10 +21,10 @@ export default function Brands() {
       <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
         {BRANDS.map(b => (
           <li key={b.name}
-            className="group flex aspect-square w-full max-w-[9.5rem] items-center justify-center justify-self-center rounded-full border border-espresso/20 bg-white/70 p-5 text-center text-espresso shadow-[0_10px_28px_-16px_rgba(45,18,13,.45)] transition duration-300 hover:-translate-y-1 hover:border-cherry/60 hover:bg-white hover:shadow-[0_18px_34px_-16px_rgba(142,24,37,.45)]">
+            className="group flex aspect-square w-full max-w-[9.5rem] items-center justify-center justify-self-center overflow-hidden rounded-full border border-espresso/20 bg-white/70 text-center text-espresso shadow-[0_10px_28px_-16px_rgba(45,18,13,.45)] transition duration-300 hover:-translate-y-1 hover:border-cherry/60 hover:bg-white hover:shadow-[0_18px_34px_-16px_rgba(142,24,37,.45)]">
             {b.logo
-              ? <img src={b.logo.startsWith('/') ? import.meta.env.BASE_URL + b.logo.slice(1) : b.logo} alt={b.name} loading="lazy" className="max-h-[45%] max-w-[70%] object-contain opacity-80 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0" />
-              : <span className={STYLES[b.style] || STYLES.caps}>{b.name}</span>}
+              ? <img src={b.logo.startsWith('/') ? import.meta.env.BASE_URL + b.logo.slice(1) : b.logo} alt={b.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              : <span className={`${STYLES[b.style] || STYLES.caps} p-5`}>{b.name}</span>}
           </li>
         ))}
       </ul>

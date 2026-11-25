@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import ContentExamples from './components/ContentExamples';
 import Portfolio from './components/Portfolio';
 import Services from './components/Services';
 import Contact from './components/Contact';
@@ -19,6 +20,7 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <ContentExamples />
         <Portfolio onHire={setService} />
         <Services onSelect={pick} />
         <Contact preselected={service} />

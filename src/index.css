@@ -6,7 +6,7 @@
   /* Foto de leopardo: se muestra a este tamaño y se repite */
   [class*='bg-leopard'] { background-size: 400px auto; }
   html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-  body { @apply bg-butter text-espresso font-sans antialiased; }
+  body { @apply font-sans antialiased bg-butter text-espresso; }
   :focus-visible { outline: 3px solid #8E1825; outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
 }
@@ -19,24 +19,27 @@
   /* Estilo scrapbook */
   .grain::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .16; mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
-  .label { @apply bg-espresso px-2 font-bold leading-snug text-butter; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  .pill { @apply inline-block rounded-full border-2 border-current px-6 py-2 font-medium; }
-  .scribble { @apply font-marker leading-none; }
+  .label { @apply px-2 font-bold leading-snug bg-espresso text-butter; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .pill { @apply inline-block px-6 py-2 font-medium border-2 border-current rounded-full; }
+  .scribble { @apply leading-none font-marker; }
   /* Foto recortada: blanco y negro con borde blanco tipo sticker */
   .cutout { filter: grayscale(1) contrast(1.05) drop-shadow(3px 0 0 #FFF8CA) drop-shadow(-3px 0 0 #FFF8CA) drop-shadow(0 3px 0 #FFF8CA) drop-shadow(0 -3px 0 #FFF8CA); }
   /* Botones: redondeados, sombra suave y transiciones limpias */
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-[0.95rem] font-semibold tracking-wide transition duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[.98] focus-visible:outline-offset-4; }
   .btn-primary { @apply btn bg-cherry text-butter shadow-[0_10px_24px_-10px_rgba(142,24,37,.7)] hover:bg-cherry-dark hover:shadow-[0_14px_28px_-10px_rgba(107,11,12,.75)]; }
-  .btn-ghost { @apply btn border border-espresso/70 bg-transparent text-espresso hover:bg-espresso hover:text-butter; }
+  .btn-ghost { @apply bg-transparent border btn border-espresso/70 text-espresso hover:bg-espresso hover:text-butter; }
   .btn-light { @apply btn bg-butter text-espresso shadow-[0_10px_24px_-12px_rgba(0,0,0,.6)] hover:bg-white; }
-  .btn-outline-light { @apply btn border border-butter/80 text-butter hover:bg-butter hover:text-espresso; }
-  .chip { @apply rounded-full border px-5 py-2 text-sm font-semibold transition-colors duration-200; }
-  .section { @apply relative z-10 mx-auto max-w-6xl px-5 py-20 md:py-28; }
+  .btn-outline-light { @apply border btn border-butter/80 text-butter hover:bg-butter hover:text-espresso; }
+  .chip { @apply px-5 py-2 text-sm font-semibold transition-colors duration-200 border rounded-full; }
+  .section { @apply relative z-10 max-w-6xl px-5 py-20 mx-auto md:py-28; }
   .tape { @apply absolute -top-3 left-1/2 h-6 w-24 -translate-x-1/2 rotate-[-4deg] opacity-90; background-image: theme('backgroundImage.leopard'); background-size: 220px auto; }
   /* Franjas de leopardo: se combinan con bg-leopard-cherry / -espresso / -sky. Ajustadas para que siempre se vea una fila de rosetas */
   .band    { height: 1.75rem; }
   .band-sm { height: .875rem; background-size: 300px auto; }
 }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fadeUp .5s cubic-bezier(.2,.8,.3,1) both; }
 
 /* Única animación autónoma: la foto del hero se "pega" al cargar */
 @keyframes stick { from { transform: rotate(-9deg) translateY(-14px); opacity: 0; } to { transform: rotate(3deg); opacity: 1; } }

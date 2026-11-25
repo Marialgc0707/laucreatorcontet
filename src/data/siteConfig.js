@@ -8,9 +8,9 @@ export const SITE = {
 
   // 🔗 REEMPLAZA con tus enlaces reales de redes
   socials: [
-    { label: 'TikTok',    href: 'https://tiktok.com/@laucreatorcontent',       icon: 'tiktok' },
-    { label: 'Instagram', href: 'https://instagram.com/laucreatorcontent',     icon: 'instagram' },
-    { label: 'Facebook',  href: 'https://facebook.com/laucreatorcontent',      icon: 'facebook' },
+    { label: 'TikTok',    href: 'https://www.tiktok.com/@lau_nedwetzki?_r=1&_t=ZS-9BhlMfICNnx',       icon: 'tiktok' },
+    { label: 'Instagram', href: 'https://www.instagram.com/lau_nedwetzki?gwpx=YXg1NzJxYWpjM3Vu',     icon: 'instagram' },
+    { label: 'Facebook',  href: 'https://www.facebook.com/share/1DkS34y5Ho/?mibextid=wwXIfr',      icon: 'facebook' },
     { label: 'Gmail',     href: 'mailto:tucorreo@gmail.com',                   icon: 'gmail', text: 'tucorreo@gmail.com' }, // ✏️ pon tu correo real
     { label: 'Pinterest', href: 'https://pinterest.com/laucreatorcontent',     icon: 'pinterest' },
   ],

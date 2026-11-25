@@ -1,2 +1,0 @@
-Coloca aquí tus imágenes: hero.jpg, about.jpg y las de cada proyecto (ver src/data/portfolioData.js).
-Esta carpeta se copia a dist/images al compilar.

@@ -33,7 +33,8 @@ export default function Contact({ preselected }) {
     } catch { setStatus('network'); }
   }
 
-  const field = 'w-full border-2 border-espresso bg-white px-3 py-2.5';
+  const field = k => `w-full rounded-xl border bg-white px-4 py-3 text-base transition placeholder:text-espresso/40 focus:border-cherry focus:outline-none focus:ring-4 focus:ring-cherry/15 ${errors[k] ? 'border-cherry' : 'border-espresso/25'}`;
+  const label = 'mb-1.5 block text-sm font-semibold';
   const Err = ({ k }) => errors[k] ? <p className="mt-1 text-sm font-medium text-cherry" role="alert">{errors[k]}</p> : null;
 
   return (
@@ -42,39 +43,62 @@ export default function Contact({ preselected }) {
       <div className="section">
       <div className="grid gap-12 md:grid-cols-[1fr_1.3fr]">
         <div>
-          <h2 className="font-didone text-5xl uppercase leading-none md:text-7xl">Trabajemos <span className="scribble mt-2 block -rotate-2 normal-case text-cherry">juntos</span></h2>
+          <h2 className="text-5xl leading-none uppercase font-didone md:text-7xl">Trabajemos <span className="block mt-2 normal-case scribble -rotate-2 text-cherry">juntos</span></h2>
           <p className="mt-4 text-lg leading-relaxed">Cuéntame sobre tu marca y qué quieres lograr. Respondo en un máximo de 48 horas.</p>
           <ul className="mt-8 space-y-3">
             {SITE.socials.map(s => { const I = ICONS[s.icon]; return (
-              <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 font-medium transition hover:text-cherry">
-                <span className="grid h-11 w-11 place-items-center rounded-full border border-espresso/70 bg-sky transition group-hover:border-cherry group-hover:bg-cherry group-hover:text-butter"><I size={20} aria-hidden /></span>{s.label} · {s.text || SITE.handle}</a></li>
+              <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 font-medium transition group hover:text-cherry">
+                <span className="grid transition border rounded-full h-11 w-11 place-items-center border-espresso/70 bg-sky group-hover:border-cherry group-hover:bg-cherry group-hover:text-butter"><I size={20} aria-hidden /></span>{s.label} · {s.text || SITE.handle}</a></li>
             ); })}
           </ul>
         </div>
 
-        <form onSubmit={submit} noValidate className="relative space-y-4 border-2 border-espresso bg-butter-deep p-6 shadow-cut">
-          <Star variant="patch" tone="cherry" className="absolute -bottom-5 -right-4 w-14 rotate-12" />
-          {/* Honeypot: invisible para personas, los bots lo rellenan */}
-          <div className="absolute -left-[9999px]" aria-hidden>
-            <label>No rellenar<input tabIndex={-1} autoComplete="off" value={form.website} onChange={set('website')} /></label>
-          </div>
-          <div><label htmlFor="name" className="mb-1 block font-medium">Nombre</label><input id="name" className={field} value={form.name} onChange={set('name')} autoComplete="name" /><Err k="name" /></div>
-          <div><label htmlFor="email" className="mb-1 block font-medium">Correo electrónico</label><input id="email" type="email" className={field} value={form.email} onChange={set('email')} autoComplete="email" /><Err k="email" /></div>
-          <div><label htmlFor="service" className="mb-1 block font-medium">Servicio de interés</label>
-            <select id="service" className={field} value={form.service} onChange={set('service')}>
-              <option value="">Aún no lo sé</option>{SERVICES.map(s => <option key={s.name}>{s.name}</option>)}
-            </select></div>
-          <div><label htmlFor="message" className="mb-1 block font-medium">Mensaje</label><textarea id="message" rows={5} className={field} value={form.message} onChange={set('message')} /><Err k="message" /></div>
+        <form onSubmit={submit} noValidate className="relative">
+          <Star variant="patch" tone="cherry" className="absolute z-10 -bottom-5 -right-4 w-14 rotate-12" />
+          <div className="overflow-hidden rounded-3xl border border-espresso/15 bg-white/85 shadow-[0_30px_60px_-30px_rgba(45,18,13,.45)]">
+            <div className="band-sm bg-leopard-cherry" aria-hidden />
+            <div className="p-6 space-y-5 md:p-8">
+              <div>
+                <h3 className="text-2xl font-didone md:text-3xl">Cuéntame tu idea</h3>
+                <p className="mt-1 text-sm text-espresso-soft">Completa el formulario y te escribo con una propuesta.</p>
+              </div>
 
-          <button type="submit" disabled={status === 'loading'} className="btn-primary disabled:opacity-60">
-            {status === 'loading' ? <><Loader2 className="animate-spin" size={18} aria-hidden />Enviando…</> : <><Send size={18} aria-hidden />Enviar mensaje</>}
-          </button>
+              {/* Honeypot: invisible para personas, los bots lo rellenan */}
+              <div className="absolute -left-[9999px]" aria-hidden>
+                <label>No rellenar<input tabIndex={-1} autoComplete="off" value={form.website} onChange={set('website')} /></label>
+              </div>
 
-          <div aria-live="polite">
-            {status === 'success' && <p className="flex items-start gap-2 bg-sky p-3 font-medium"><CheckCircle2 className="shrink-0" aria-hidden />{msg || 'Mensaje enviado. ¡Gracias!'}</p>}
-            {status === 'invalid' && <p className="flex items-start gap-2 bg-cherry p-3 font-medium text-butter"><AlertCircle className="shrink-0" aria-hidden />Revisa los campos marcados e inténtalo de nuevo.</p>}
-            {status === 'error' && <p className="flex items-start gap-2 bg-cherry p-3 font-medium text-butter"><AlertCircle className="shrink-0" aria-hidden />{msg}</p>}
-            {status === 'network' && <p className="flex items-start gap-2 bg-cherry p-3 font-medium text-butter"><AlertCircle className="shrink-0" aria-hidden />No hay conexión con el servidor. Revisa tu internet e inténtalo otra vez.</p>}
+              <div className="grid gap-5 md:grid-cols-2">
+                <div><label htmlFor="name" className={label}>Nombre</label><input id="name" placeholder="Tu nombre" className={field('name')} value={form.name} onChange={set('name')} autoComplete="name" /><Err k="name" /></div>
+                <div><label htmlFor="email" className={label}>Correo electrónico</label><input id="email" type="email" placeholder="tu@correo.com" className={field('email')} value={form.email} onChange={set('email')} autoComplete="email" /><Err k="email" /></div>
+              </div>
+
+              <fieldset>
+                <legend className={label}>Servicio de interés</legend>
+                <div className="flex flex-wrap gap-2" role="radiogroup">
+                  {[{ name: '', label: 'Aún no lo sé' }, ...SERVICES.map(s => ({ name: s.name, label: s.name }))].map(o => (
+                    <button key={o.label} type="button" role="radio" aria-checked={form.service === o.name} onClick={() => setForm({ ...form, service: o.name })}
+                      className={`chip ${form.service === o.name ? 'border-cherry bg-cherry text-butter' : 'border-espresso/30 bg-white text-espresso hover:border-cherry hover:text-cherry'}`}>{o.label}</button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div><label htmlFor="message" className={label}>Mensaje</label><textarea id="message" rows={5} placeholder="Cuéntame sobre tu marca y qué quieres lograr…" className={field('message')} value={form.message} onChange={set('message')} /><Err k="message" /></div>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <button type="submit" disabled={status === 'loading'} className="w-full btn-primary disabled:opacity-60 sm:w-auto">
+                  {status === 'loading' ? <><Loader2 className="animate-spin" size={18} aria-hidden />Enviando…</> : <><Send size={18} aria-hidden />Enviar mensaje</>}
+                </button>
+                <p className="text-xs text-espresso-soft">Respondo en un máximo de 48 horas.</p>
+              </div>
+
+              <div aria-live="polite">
+                {status === 'success' && <p className="flex items-start gap-2 p-3 font-medium rounded-xl bg-sky"><CheckCircle2 className="shrink-0" aria-hidden />{msg || 'Mensaje enviado. ¡Gracias!'}</p>}
+                {status === 'invalid' && <p className="flex items-start gap-2 p-3 font-medium rounded-xl bg-cherry text-butter"><AlertCircle className="shrink-0" aria-hidden />Revisa los campos marcados e inténtalo de nuevo.</p>}
+                {status === 'error' && <p className="flex items-start gap-2 p-3 font-medium rounded-xl bg-cherry text-butter"><AlertCircle className="shrink-0" aria-hidden />{msg}</p>}
+                {status === 'network' && <p className="flex items-start gap-2 p-3 font-medium rounded-xl bg-cherry text-butter"><AlertCircle className="shrink-0" aria-hidden />No hay conexión con el servidor. Revisa tu internet e inténtalo otra vez.</p>}
+              </div>
+            </div>
           </div>
         </form>
       </div>
