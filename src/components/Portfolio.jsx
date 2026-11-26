@@ -4,7 +4,6 @@ import Photo from './Photo';
 import { StarField } from './Sticker';
 import { CATEGORIES, PROJECTS } from '../data/portfolioData';
 
-
 export default function Portfolio({ onHire }) {
   const [cat, setCat] = useState('Todos');
   const [idx, setIdx] = useState(null); // posición del proyecto abierto dentro de la lista filtrada
